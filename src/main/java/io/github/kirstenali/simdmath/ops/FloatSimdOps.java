@@ -120,7 +120,6 @@ public final class FloatSimdOps {
         return r;
     }
 
-    // where*: compare -> mask; select via blend; masked IO for edges
     public static float[] whereGreater(float[] a, float[] b, float[] ifTrue, float[] ifFalse) {
         ArrayUtil.checkSameLength(a.length, b.length);
         ArrayUtil.checkSameLength(a.length, ifTrue.length);
@@ -133,7 +132,7 @@ public final class FloatSimdOps {
             VectorMask<Float> cm = va.compare(VectorOperators.GT, vb);
             FloatVector vt = FloatVector.fromArray(S, ifTrue, i, m);
             FloatVector vf = FloatVector.fromArray(S, ifFalse, i, m);
-            vf.blend(vt, cm).intoArray(r, i, m); // pick vt where cm true, else vf
+            vf.blend(vt, cm).intoArray(r, i, m);
         }
         return r;
     }

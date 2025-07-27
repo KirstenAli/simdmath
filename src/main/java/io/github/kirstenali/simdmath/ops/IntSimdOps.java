@@ -132,7 +132,6 @@ public final class IntSimdOps {
         return r;
     }
 
-    // Reductions: return long to reduce overflow risk (see prior discussion)
     public static long sum(int[] a) {
         long t = 0L;
         for (int i = 0; i < a.length; i += S.length()) {
